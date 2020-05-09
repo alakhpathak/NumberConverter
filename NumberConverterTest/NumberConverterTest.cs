@@ -21,7 +21,7 @@ namespace NumberConverterTest
             string expected = "zero";
             NumberConverter numberConverter = new NumberConverter();
             var actual = numberConverter.ToWord(0);
-            Assert.AreEqual(expected, expected);
+            StringAssert.Contains(expected, expected);
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace NumberConverterTest
             string expected = "thirteen";
             NumberConverter numberConverter = new NumberConverter();
             var actual = numberConverter.ToWord(13);
-            Assert.AreEqual(expected, expected);
+            StringAssert.Contains(expected, expected);
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace NumberConverterTest
             string expected = "One thousand two hundred thirty four";
             NumberConverter numberConverter = new NumberConverter();
             var actual = numberConverter.ToWord(1234);
-            Assert.AreEqual(expected, expected);
+            StringAssert.Contains(expected, expected);
         }
     }
 }
