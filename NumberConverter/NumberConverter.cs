@@ -9,6 +9,7 @@ namespace NumberConverterLib
         Dictionary<int, string> oneDigitDict = new Dictionary<int, string>();
         Dictionary<int, string> twoDigitDict = new Dictionary<int, string>();
         Dictionary<int, string> tensDict = new Dictionary<int, string>();
+        Dictionary<int, string> tensPowDict = new Dictionary<int, string>();
 
         public NumberConverter()
         {
@@ -22,6 +23,18 @@ namespace NumberConverterLib
             int len = number.Length;
             int i = 0;
 
+            while (len > 2)
+            {
+                int num = number[i] - '0';
+
+                result.Append(oneDigitDict[num]);
+                result.Append(" ");
+                result.Append(tensPowDict[len - 1]);
+                result.Append(" ");
+
+                len--;
+                i++;
+            }
             while (len > 1)
             {
                 int num = number[i] - '0';
@@ -37,6 +50,7 @@ namespace NumberConverterLib
                     len--;
                     int key = num * 10 + number[i] - '0';
                     result.Append(twoDigitDict[key]);
+                    result.Append(" ");
                 }
 
                 len--;
@@ -50,7 +64,7 @@ namespace NumberConverterLib
                 len--;
                 i++;
             }
-            return result.ToString();
+            return result.ToString().TrimEnd(' ');
         }
 
         private void Initialize()
@@ -58,6 +72,7 @@ namespace NumberConverterLib
             OneDigitDictionaryIntialize();
             TwoDigitDictionaryIntialize();
             TensDictionaryIntialize();
+            TensPowDictionaryIntialize();
         }
 
         private void OneDigitDictionaryIntialize()
@@ -98,6 +113,12 @@ namespace NumberConverterLib
             tensDict.Add(7, "seventy");
             tensDict.Add(8, "eighty");
             tensDict.Add(9, "ninty");
+        }
+
+        private void TensPowDictionaryIntialize()
+        {
+            tensPowDict.Add(2, "hundred");
+            tensPowDict.Add(3, "thousand");
         }
     }
 }
