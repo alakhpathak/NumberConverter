@@ -17,6 +17,9 @@ namespace NumberConverterLib
         }
         public string ToWord(int n)
         {
+            if (n < 0)
+                throw new ArgumentException("whole number is expected");
+
             StringBuilder result = new StringBuilder();
 
             string number = n.ToString();

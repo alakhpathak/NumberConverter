@@ -8,7 +8,7 @@ namespace NumberConverterTest
     public class NumberConverterTest
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentException), "whole number is expected")]
         public void NegativeNumberNotSupportedTest_Error()
         {
             NumberConverter numberConverter = new NumberConverter();
