@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "AQCv36jZAubC3emPLkB1eDt8CR1tnXVIQMuIjmatMi2vawJ0KrY6rY23xMRb54V2cjZhz01eEwqPx0g8gql5zA==",
+  "success": true,
+  "projectFilePath": "C:\\GitHub\\NumberConverter\\NumberConverter\\NumberConverter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alakh.pathak\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\alakh.pathak\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
