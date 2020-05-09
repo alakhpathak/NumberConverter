@@ -34,6 +34,16 @@ namespace NumberConverterTest
         }
 
         [TestMethod]
+        public void TwoDigitMaxTest_NoError()
+        {
+            string expected = "fifty seven";
+            NumberConverter numberConverter = new NumberConverter();
+            var actual = numberConverter.ToWord(57);
+            StringAssert.Contains(expected, expected);
+        }
+
+
+        [TestMethod]
         public void FourDigitTest_NoError()
         {
             string expected = "One thousand two hundred thirty four";
