@@ -71,6 +71,15 @@ namespace NumberConverterTest
         }
 
         [TestMethod]
+        public void FiveDigitTest_NoError()
+        {
+            string expected = "eleven thousand two hundred thirty four";
+            NumberConverter numberConverter = new NumberConverter();
+            var actual = numberConverter.ToWord(11234);
+            StringAssert.Equals(expected, expected);
+        }
+
+        [TestMethod]
         public void FourDigitContainsZeroTest_NoError()
         {
             string expected = "one thousand thirty four";

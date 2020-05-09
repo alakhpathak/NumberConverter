@@ -31,11 +31,48 @@ namespace NumberConverterLib
             int len = number.Length;
             int i = 0;
 
+            BigDigitHandler(result, number, ref len, ref i);
             ThreeOrMoreDigitHandler(result, number, ref len, ref i);
             TwoDigitHandler(result, number, ref len, ref i);
             OneDigitHandler(result, number, ref len, ref i);
 
             return result.ToString().TrimEnd(' ');
+        }
+
+        private void BigDigitHandler(StringBuilder result, string number, ref int len, ref int i)
+        {
+            while (len > 4)
+            {
+                int num = number[i++] - '0';
+
+                if (num == 0)
+                {
+                    len--;
+                    i++;
+                    continue;
+                }
+
+                if (len % 2 != 0)
+                {
+                    int ones = number[i++] - '0';
+                    result.Append(TwoDigitHelper(num * 10 + ones));
+
+                    result.Append(tensPowDict[len - 2]);
+
+                    result.Append(" ");
+                    len = len - 2;
+
+                    continue;
+                }
+
+                result.Append(oneDigitDict[num]);
+                result.Append(" ");
+                result.Append(tensPowDict[len - 1]);
+                result.Append(" ");
+
+                len--;
+                i++;
+            }
         }
 
         private void ThreeOrMoreDigitHandler(StringBuilder result, string number, ref int len, ref int i)
@@ -109,6 +146,17 @@ namespace NumberConverterLib
                 len--;
                 i++;
             }
+        }
+
+        private string TwoDigitHelper(int number)
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append(twoDigitDict[number]);
+            result.Append(" ");
+
+            return result.ToString();
+
         }
 
         private void Initialize()
