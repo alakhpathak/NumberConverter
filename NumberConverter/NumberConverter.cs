@@ -20,16 +20,36 @@ namespace NumberConverterLib
             if (n < 0)
                 throw new ArgumentException("whole number is expected");
 
+            if (n == 0)
+            {
+                return oneDigitDict[0];
+            }
+
             StringBuilder result = new StringBuilder();
 
             string number = n.ToString();
             int len = number.Length;
             int i = 0;
 
+            ThreeOrMoreDigitHandler(result, number, ref len, ref i);
+            TwoDigitHandler(result, number, ref len, ref i);
+            OneDigitHandler(result, number, ref len, ref i);
+
+            return result.ToString().TrimEnd(' ');
+        }
+
+        private void ThreeOrMoreDigitHandler(StringBuilder result, string number, ref int len, ref int i)
+        {
             while (len > 2)
             {
                 int num = number[i] - '0';
 
+                if (num == 0)
+                {
+                    len--;
+                    i++;
+                    continue;
+                }
                 result.Append(oneDigitDict[num]);
                 result.Append(" ");
                 result.Append(tensPowDict[len - 1]);
@@ -38,6 +58,10 @@ namespace NumberConverterLib
                 len--;
                 i++;
             }
+        }
+
+        private void TwoDigitHandler(StringBuilder result, string number, ref int len, ref int i)
+        {
             while (len > 1)
             {
                 int num = number[i] - '0';
@@ -55,19 +79,36 @@ namespace NumberConverterLib
                     result.Append(twoDigitDict[key]);
                     result.Append(" ");
                 }
+                else if (num == 0)
+                {
+                    len--;
+                    i++;
+                    continue;
+                }
 
                 len--;
                 i++;
             }
+        }
+
+        private void OneDigitHandler(StringBuilder result, string number, ref int len, ref int i)
+        {
             while (len > 0)
             {
                 int num = number[i] - '0';
+
+                if (num == 0)
+                {
+                    len--;
+                    i++;
+                    continue;
+                }
+
                 result.Append(oneDigitDict[num]);
 
                 len--;
                 i++;
             }
-            return result.ToString().TrimEnd(' ');
         }
 
         private void Initialize()
